@@ -1,4 +1,7 @@
 import { StyleSheet } from "react-native";
+import * as fontsizes  from '../../../utils/fontsizes';
+import * as color  from '../../../utils/color';
+import * as margins  from '../../../utils/margins';
 
 export default styles = StyleSheet.create({
     container: {
@@ -25,16 +28,23 @@ export default styles = StyleSheet.create({
 
     },
     text:{
-        color:'#FFFFFF',
-        fontSize:70,
+        color:color.primary,
+        fontSize:fontsizes.headsize,
         fontWeight: 'bold',
+        
         marginTop: 75
+    },
+    txtinpt:
+    {
+        fontSize:fontsizes.txtinptfont,
+        marginLeft:15,
+        //textAlign:'center'
     },
 
     textforgot:
     {
-        color:'#FFFFFF',
-        fontSize:30,
+        color:color.primary,
+        fontSize:fontsizes.forgotfont,
         fontWeight: 'bold',
         marginTop:15,
         marginLeft:15,
@@ -44,15 +54,15 @@ export default styles = StyleSheet.create({
     
    btnlogin:
    {
-    backgroundColor:'white',
+    backgroundColor:color.primary,
     padding:10,
     alignItems: 'center',
     borderRadius:5,
     height:60,
     marginTop:30,
-    marginLeft:15,
-    marginRight:15,
-    color:'red'
+    marginLeft:margins.leftmargin,
+    marginRight:margins.rightmargin,
+    color:color.secondary
    },
    box:
    {
@@ -68,12 +78,12 @@ export default styles = StyleSheet.create({
    userContainer: {
        
     flexDirection: 'row',
-    borderColor: 'white',
+    borderColor: color.containerborder,
     borderWidth: 2, 
     height:40,
-    marginRight:15,
+    marginRight:margins.rightmargin,
     marginTop:20, 
-    marginLeft:15,
+    marginLeft:margins.leftmargin,
     padding:5,
     
 
