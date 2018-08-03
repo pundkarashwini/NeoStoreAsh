@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,ImageBackground,TextInput,TouchableOpacity,Alert} from 'react-native';
+import {Platform, StyleSheet,   ScrollView,Text, View,ImageBackground,TextInput,TouchableOpacity,Alert} from 'react-native';
 import styles from "./registerStyle";
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import CheckBox from 'react-native-check-box';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';   
+import * as color  from '../../../utils/color';
 var gender=[
     { label:"Male" ,value:0},
     {label:"Female" ,value:1}
@@ -71,7 +72,7 @@ let  regex1= /^[a-zA-Z0-9]{8,12}$/;
    return false;
  }
 //confirm pswd
-if(!this.state.password==this.state.confirmpassword)
+if(this.state.password!=this.state.confirmpassword)
 {
     alert('enter same as password');
     return false;
@@ -114,45 +115,53 @@ this.props.navigation.navigate('loginscreen');
       
       return (
         
-        <View style={{flex:1}}> 
+        <View style={{flex:1 ,}}> 
  <ImageBackground style={styles.backgroundImage} source={require('../../../assets/images/Android_Master_bg.jpg')} >
-<View style={{flex:1,flexDirection:'row'}}>
+ <ScrollView>
+<View style={{flex:2,flexDirection:'row',backgroundColor:color.secondary ,}}>
 <Icon name="angle-left" size={40} color="white" style={styles.icon} onPress={() => this.props.navigation.goBack()}/>
 <Text style={styles.texthead}>Register</Text>
 </View>
 
-<View style={{flex:2,justifyContent:'flex-end',alignItems:'center'}}>
+<View style={{flex:3,justifyContent:'flex-end',alignItems:'center'}}>
 <Text style={styles.text}>NeoSTORE</Text>
 </View>
 
-<View style={{flex:11,}}>
+<View style={{flex:16,}}>
 <View style={styles.userContainer}>
      <Icon name="user" size={25} color="#fff" />
      <TextInput style={styles.icontext}
+     multiline = {true}
+     
      onChangeText={(fname) => this.setState({fname})} value={this.state.fname}
           placeholder="First Name" placeholderTextColor="white"></TextInput>
 </View>
 <View style={styles.userContainer}>
      <Icon name="user" size={25} color="#fff" />
      <TextInput style={styles.icontext}
+     multiline = {true}
      onChangeText={(lname) => this.setState({lname})} value={this.state.lname}
           placeholder="Last Name" placeholderTextColor="white"></TextInput>
 </View>
 <View style={styles.userContainer}>
      <Icon name="envelope" size={20} color="#fff" />
-     <TextInput style={styles.icontext}
+     <TextInput style={styles.icontext} multiline = {true}
+     
      onChangeText={(email) => this.setState({email})} value={this.state.email}
           placeholder="Email " placeholderTextColor="white"></TextInput>
     </View>
     <View style={styles.userContainer}>
       <Icon name="lock" size={25} color="#fff" />
       <TextInput style={styles.icontext} secureTextEntry={true}  
+      multiline = {true}
+     
       onChangeText={(password) => this.setState({password})} value={this.state.password}
           placeholder="Password" placeholderTextColor="white" ></TextInput>
 </View>
 <View style={styles.userContainer}>
       <Icon name="lock" size={25} color="#fff" />
-      <TextInput style={styles.icontext}
+      <TextInput style={styles.icontext} multiline = {true}
+     
       onChangeText={(confirmpassword) => this.setState({confirmpassword})} value={this.state.confirmpassword}
 secureTextEntry={true}          placeholder="Confirm Password" placeholderTextColor="white" ></TextInput>
 </View>
@@ -176,7 +185,8 @@ secureTextEntry={true}          placeholder="Confirm Password" placeholderTextCo
 
 <View style={styles.userContainer}>
       <Icon name="mobile" size={30} color="#fff" />
-      <TextInput style={styles.icontext}
+      <TextInput style={styles.icontext} multiline = {true}
+     
       onChangeText={(phone) => this.setState({phone})} value={this.state.phone}
           placeholder="Phone Number" placeholderTextColor="white" ></TextInput>
 </View>
@@ -185,6 +195,8 @@ secureTextEntry={true}          placeholder="Confirm Password" placeholderTextCo
 <CheckBox
     onClick={()=>this.setState({check:!this.state.check})}
     isChecked={this.state.check}
+    checkBoxColor="white"
+
 />
 
 <Text style={styles.textcheck}>I agree the Terms and Conditions.</Text>
@@ -202,9 +214,10 @@ onPress={this.validate}>
     </View>
 
 </View>
-
+</ScrollView>
 </ImageBackground>
         </View>
+        
         );
     }
   }

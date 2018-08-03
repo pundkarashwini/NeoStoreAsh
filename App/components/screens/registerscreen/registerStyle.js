@@ -15,9 +15,10 @@ export default styles=StyleSheet.create({
         color:color.primary,
         fontSize:25,
         fontWeight: 'bold',
-        marginTop: 20,
+        marginTop: margins.icontop,
         alignSelf: "center",
-        marginLeft:90,
+        marginLeft:110,
+        
         
         
     },
@@ -30,7 +31,9 @@ export default styles=StyleSheet.create({
         color:color.primary,
         fontSize:50,
         fontWeight: 'bold',
-        marginLeft:20
+        marginLeft:20,
+        justifyContent:'center',
+        alignItems:'center'
         
     },
     userContainer: {
@@ -50,7 +53,8 @@ export default styles=StyleSheet.create({
       {
         fontSize:25,
         marginLeft:20,
-        fontWeight:'bold'
+        fontWeight:'bold',
+        color : color.userinputcolor
       },
       textgen:{
         color:color.primary, 

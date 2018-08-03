@@ -63,8 +63,10 @@ export default styles = StyleSheet.create({
     },
       txtinpt:
     {
+
         fontSize:fontsizes.txtinptfont,
-        marginLeft:15
+        marginLeft:15,
+        color : color.userinputcolor
     },
       btnlogin:
    {

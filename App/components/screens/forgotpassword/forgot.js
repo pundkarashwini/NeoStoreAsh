@@ -6,8 +6,39 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 
 export default class Forgot extends Component{
-  
-
+    constructor(props) {
+        super(props);
+        this.state = { 
+            username:'',
+            password:'',
+            confirmpassword:''
+        };
+    }
+    validate=()=>{
+        //username
+        let regex = /^[a-zA-Z]\w+([\.-]?\w+)*@\w+([\.-]?\w+){1}(\.\w{2,3})$/;
+        if(this.state.username=='' || !regex.test(this.state.username)){
+          alert('enter valid Username');
+          return false;
+        }
+        
+       //password
+     let  regex1= /^[a-zA-Z0-9]{8,12}$/;
+     
+     if(this.state.password==''||!regex1.test(this.state.password))
+     {
+       alert('enter strong password');
+       return false;
+     }
+     //confirm password
+     if(this.state.password!=this.state.confirmpassword)
+{
+    alert('enter same as password');
+    return false;
+}else
+     this.props.navigation.navigate('loginscreen')
+      }
+    
     render() {
       return (
 <View style={{flex:1}}> 
@@ -17,7 +48,7 @@ export default class Forgot extends Component{
 <Icon name="angle-left" size={50} color="white" style={styles.icon} onPress={() => this.props.navigation.goBack()}/>
 
 </View>
-<View style={{flex:2}}>
+<View style={{flex:3}}>
 <Text style={styles.texthead}>NeoSTORE</Text>
 <Text style={styles.textforgot}>Forgot Your Password ?</Text>
 <Text style={styles.textforgot1}>Please enter username you provided during the registration process..</Text>
@@ -27,21 +58,28 @@ export default class Forgot extends Component{
 <View style={styles.userContainer}>
      <Icon name="user" size={25} color="#fff" />
      <TextInput style={styles.txtinpt}
-          placeholder="Username" placeholderTextColor="white"></TextInput>
+     multiline = {true}
+     
+          placeholder="Username" placeholderTextColor="white"
+          onChangeText={(username) => this.setState({username})} value={this.state.username}></TextInput>
 </View>
 <View style={styles.userContainer}>
       <Icon name="lock" size={25} color="#fff" />
-      <TextInput style={styles.txtinpt}
-secureTextEntry={true}            placeholder="New Password" placeholderTextColor="white" ></TextInput>
+      <TextInput style={styles.txtinpt} onChangeText={(password) => this.setState({password})} value={this.state.password}
+secureTextEntry={true}    
+multiline = {true}
+placeholder="New Password" placeholderTextColor="white" ></TextInput>
 </View>
 <View style={styles.userContainer}>
       <Icon name="lock" size={25} color="#fff" />
-      <TextInput style={styles.txtinpt} secureTextEntry={true}  
+      <TextInput style={styles.txtinpt} secureTextEntry={true}  multiline = {true}
+     
+          onChangeText={(confirmpassword) => this.setState({confirmpassword})} value={this.state.confirmpassword}
           placeholder="Confirm Password" placeholderTextColor="white" ></TextInput>
 </View>
       
-      <TouchableOpacity style={styles.btnlogin} onPress={() => this.props.navigation.navigate('loginscreen')}>        
-          <Text style={{color:'red',fontSize:20,fontWeight: 'bold'}} >RESET PASSWORD</Text>
+      <TouchableOpacity style={styles.btnlogin} onPress={this.validate}>        
+          <Text style={{color:'red',fontSize:20,fontWeight: 'bold'}} onPress={this.validate}>RESET PASSWORD</Text>
         </TouchableOpacity>
 </View>
 </ImageBackground>

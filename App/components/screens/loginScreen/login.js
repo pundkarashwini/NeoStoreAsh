@@ -21,7 +21,7 @@ export default class Login extends Component{
     //username
     let regex = /^[a-zA-Z]\w+([\.-]?\w+)*@\w+([\.-]?\w+){1}(\.\w{2,3})$/;
     if(this.state.username=='' || !regex.test(this.state.username)){
-      Alert.alert('Invalid Username');
+      alert('Invalid Username');
       return false;
     }
     
@@ -37,11 +37,11 @@ export default class Login extends Component{
   }
 
   render() {
-    return (
+    return ( 
       <View style={styles.container}> 
           
         <ImageBackground style={styles.backgroundImage} source={require('../../../assets/images/Android_Master_bg.jpg')} >
-     
+        
      <View style={styles.container1}>
      
      <Text style={styles.text}>NeoSTORE</Text>
@@ -51,6 +51,8 @@ export default class Login extends Component{
      <View style={styles.userContainer}>
      <Icon name="user" size={25} color="#fff"/>
      <TextInput style={styles.txtinpt}
+     multiline = {true}
+     
           placeholder="Username" placeholderTextColor="white"  
           onChangeText={(username) => this.setState({username})} value={this.state.username} 
            ></TextInput>
@@ -58,15 +60,20 @@ export default class Login extends Component{
 
       <View style={styles.userContainer}>
       <Icon name="lock" size={25} color="#fff" />
-      <TextInput style={styles.txtinpt}
+      <TextInput style={styles.txtinpt} multiline = {true}
+     
           placeholder="Password" placeholderTextColor="white" 
           onChangeText={(password) => this.setState({password})} value={this.state.password} secureTextEntry={true}  ></TextInput>
 </View>
 
-          <TouchableOpacity style={styles.btnlogin} >        
+          <TouchableOpacity style={styles.btnlogin} 
+          onPress={this.validate} >        
           <Text style={{color:'red',fontSize:30,fontWeight: 'bold'}}  onPress={this.validate}>LOGIN</Text>
         </TouchableOpacity>
-        <Text style={styles.textforgot} onPress={() => this.props.navigation.navigate('forgotpassword')}>Forgot Password?</Text>
+        
+        <Text style={styles.textforgot} 
+onPress={() => this.props.navigation.navigate('forgotpassword')}>        
+Forgot Password?</Text>
      </View>
      
      
@@ -82,10 +89,10 @@ export default class Login extends Component{
              </View>
      </View>
           
-          
-          </ImageBackground>
+         
+          </ImageBackground> 
       </View>
-
+     
     );
   }
 }

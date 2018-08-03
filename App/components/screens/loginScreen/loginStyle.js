@@ -38,7 +38,9 @@ export default styles = StyleSheet.create({
     {
         fontSize:fontsizes.txtinptfont,
         marginLeft:15,
-        //textAlign:'center'
+        color : color.userinputcolor,
+        height:20
+        
     },
 
     textforgot:
