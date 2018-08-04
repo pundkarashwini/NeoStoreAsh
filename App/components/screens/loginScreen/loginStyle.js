@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import * as fontsizes  from '../../../utils/fontsizes';
 import * as color  from '../../../utils/color';
 import * as margins  from '../../../utils/margins';
-
+import global from '../../../lib/global';
 export default styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -39,7 +39,9 @@ export default styles = StyleSheet.create({
         fontSize:fontsizes.txtinptfont,
         marginLeft:15,
         color : color.userinputcolor,
-        height:20
+        
+        height: (global.OS === 'ios')? 25: 500,
+        width: (global.OS === 'ios')? 300: 500,
         
     },
 
