@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import * as fontsizes  from '../../../utils/fontsizes';
 import * as color  from '../../../utils/color';
 import * as margins  from '../../../utils/margins';
-
+import global from '../../../lib/global';
 
 
 export default styles = StyleSheet.create({
@@ -17,6 +17,11 @@ export default styles = StyleSheet.create({
     {
         marginTop:margins.icontop,
         marginLeft:margins.iconleft
+    },
+    icontxt:{
+        marginTop:5,
+        marginLeft:5
+
     },
     textforgot:
     {
@@ -46,9 +51,7 @@ export default styles = StyleSheet.create({
         marginRight:margins.rightmargin,
         marginTop:20, 
         marginLeft:margins.leftmargin,
-        padding:5,
-        
-    
+       
       },
       texthead:{
         color:color.primary,
@@ -66,7 +69,11 @@ export default styles = StyleSheet.create({
 
         fontSize:fontsizes.txtinptfont,
         marginLeft:15,
-        color : color.userinputcolor
+        padding:5,
+        color : color.userinputcolor,
+        height: (global.OS === 'ios')? 35: 46,
+        width: (global.OS === 'ios')? 300: 300,
+        
     },
       btnlogin:
    {

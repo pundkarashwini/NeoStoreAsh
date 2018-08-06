@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import * as fontsizes  from '../../../utils/fontsizes';
 import * as color  from '../../../utils/color';
 import * as margins  from '../../../utils/margins';
-
+import global from '../../../lib/global';
 export default styles=StyleSheet.create({
 
     backgroundImage:{
@@ -27,6 +27,11 @@ export default styles=StyleSheet.create({
         marginTop:margins.icontop,
         marginLeft:margins.iconleft
     },
+    icontxt:{
+        marginTop:5,
+        marginLeft:5
+
+    },
     text:{
         color:color.primary,
         fontSize:50,
@@ -45,16 +50,18 @@ export default styles=StyleSheet.create({
         marginRight:margins.rightmargin,
         marginTop:15, 
         marginLeft:margins.leftmargin,
-        padding:5,
+        
         
     
       },
       icontext:
       {
-        fontSize:25,
-        marginLeft:20,
-        fontWeight:'bold',
-        color : color.userinputcolor
+        fontSize:fontsizes.txtinptfont,
+        marginLeft:10,
+        padding:5,
+        color : color.userinputcolor,
+        height: (global.OS === 'ios')? 35: 46,
+        width: (global.OS === 'ios')? 300: 300,
       },
       textgen:{
         color:color.primary, 
@@ -84,6 +91,7 @@ export default styles=StyleSheet.create({
     borderRadius:5,
     height:40,
     marginTop:15,
+    marginBottom:5,
     marginLeft:margins.leftmargin,
     marginRight:margins.rightmargin,
     color:'red'

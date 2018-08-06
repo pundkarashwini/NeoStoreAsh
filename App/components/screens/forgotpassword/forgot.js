@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,ImageBackground,TextInput,TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, ScrollView,Text, View,ImageBackground,TextInput,TouchableOpacity} from 'react-native';
 import styles from "./forgotStyle";
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
@@ -44,6 +44,7 @@ export default class Forgot extends Component{
 <View style={{flex:1}}> 
 
 <ImageBackground style={styles.backgroundImage} source={require('../../../assets/images/Android_Master_bg.jpg')} >
+
 <View style={{flex:1}}>
 <Icon name="angle-left" size={50} color="white" style={styles.icon} onPress={() => this.props.navigation.goBack()}/>
 
@@ -56,23 +57,23 @@ export default class Forgot extends Component{
 
 <View style={{flex:5}}>
 <View style={styles.userContainer}>
-     <Icon name="user" size={25} color="#fff" />
+     <Icon name="user" size={25} style={styles.icontxt} color="#fff" />
      <TextInput style={styles.txtinpt}
-     multiline = {true}
+     
      
           placeholder="Username" placeholderTextColor="white"
           onChangeText={(username) => this.setState({username})} value={this.state.username}></TextInput>
 </View>
 <View style={styles.userContainer}>
-      <Icon name="lock" size={25} color="#fff" />
+      <Icon name="lock" size={25} style={styles.icontxt} color="#fff" />
       <TextInput style={styles.txtinpt} onChangeText={(password) => this.setState({password})} value={this.state.password}
 secureTextEntry={true}    
-multiline = {true}
+
 placeholder="New Password" placeholderTextColor="white" ></TextInput>
 </View>
 <View style={styles.userContainer}>
-      <Icon name="lock" size={25} color="#fff" />
-      <TextInput style={styles.txtinpt} secureTextEntry={true}  multiline = {true}
+      <Icon name="lock" size={25}style={styles.icontxt} color="#fff" />
+      <TextInput style={styles.txtinpt} secureTextEntry={true}  
      
           onChangeText={(confirmpassword) => this.setState({confirmpassword})} value={this.state.confirmpassword}
           placeholder="Confirm Password" placeholderTextColor="white" ></TextInput>
@@ -81,7 +82,7 @@ placeholder="New Password" placeholderTextColor="white" ></TextInput>
       <TouchableOpacity style={styles.btnlogin} onPress={this.validate}>        
           <Text style={{color:'red',fontSize:20,fontWeight: 'bold'}} onPress={this.validate}>RESET PASSWORD</Text>
         </TouchableOpacity>
-</View>
+</View> 
 </ImageBackground>
 </View>
 

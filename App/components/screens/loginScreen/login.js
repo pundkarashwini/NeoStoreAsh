@@ -49,9 +49,9 @@ export default class Login extends Component{
      
      <View style={styles.container2}>
      <View style={styles.userContainer}>
-     <Icon name="user" size={25} color="#fff"/>
+     <Icon name="user" style={styles.icon} size={25} color="#fff"/>
      <TextInput style={styles.txtinpt}
-     multiline = {true}
+     
      
           placeholder="Username" placeholderTextColor="white"  
           onChangeText={(username) => this.setState({username})} value={this.state.username} 
@@ -59,8 +59,8 @@ export default class Login extends Component{
       </View>
 
       <View style={styles.userContainer}>
-      <Icon name="lock" size={25} color="#fff" />
-      <TextInput style={styles.txtinpt} multiline = {true}
+      <Icon name="lock" size={25} style={styles.icon} color="#fff" />
+      <TextInput style={styles.txtinpt} 
      
           placeholder="Password" placeholderTextColor="white" 
           onChangeText={(password) => this.setState({password})} value={this.state.password} secureTextEntry={true}  ></TextInput>

@@ -27,6 +27,11 @@ export default styles = StyleSheet.create({
         borderColor:'red'
 
     },
+    icon:{
+        marginTop:5,
+        marginLeft:5
+
+    },
     text:{
         color:color.primary,
         fontSize:fontsizes.headsize,
@@ -39,10 +44,10 @@ export default styles = StyleSheet.create({
         fontSize:fontsizes.txtinptfont,
         marginLeft:15,
         color : color.userinputcolor,
-        
-        height: (global.OS === 'ios')? 25: 500,
-        width: (global.OS === 'ios')? 300: 500,
-        
+       // padding:5,
+        height: (global.OS === 'ios')? 35: 35,
+        width: (global.OS === 'ios')? 300: 300,
+        padding: (global.OS === 'ios')? 5: 5,
     },
 
     textforgot:
@@ -88,7 +93,7 @@ export default styles = StyleSheet.create({
     marginRight:margins.rightmargin,
     marginTop:20, 
     marginLeft:margins.leftmargin,
-    padding:5,
+   
     
 
   },

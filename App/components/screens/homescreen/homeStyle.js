@@ -33,12 +33,21 @@ export default styles = StyleSheet.create({
     imghome:
     {
         
-        flex:1,
+        //flex:1,
         height:230,
-        
+        width:'100%',
         
 
     },
+    slide: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        //backgroundColor: '#9DD6EB',
+      },
+      
+    
+    
 
 imgtable:{
     flex:1,

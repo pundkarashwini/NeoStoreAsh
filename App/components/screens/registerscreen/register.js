@@ -129,38 +129,38 @@ this.props.navigation.navigate('loginscreen');
 
 <View style={{flex:16,}}>
 <View style={styles.userContainer}>
-     <Icon name="user" size={25} color="#fff" />
+     <Icon name="user" size={25} style={styles.icontxt}color="#fff" />
      <TextInput style={styles.icontext}
-     multiline = {true}
+     
      
      onChangeText={(fname) => this.setState({fname})} value={this.state.fname}
           placeholder="First Name" placeholderTextColor="white"></TextInput>
 </View>
 <View style={styles.userContainer}>
-     <Icon name="user" size={25} color="#fff" />
+     <Icon name="user" size={25} style={styles.icontxt} color="#fff" />
      <TextInput style={styles.icontext}
-     multiline = {true}
+     
      onChangeText={(lname) => this.setState({lname})} value={this.state.lname}
           placeholder="Last Name" placeholderTextColor="white"></TextInput>
 </View>
 <View style={styles.userContainer}>
-     <Icon name="envelope" size={20} color="#fff" />
-     <TextInput style={styles.icontext} multiline = {true}
+     <Icon name="envelope" size={20} style={styles.icontxt} color="#fff" />
+     <TextInput style={styles.icontext} 
      
      onChangeText={(email) => this.setState({email})} value={this.state.email}
           placeholder="Email " placeholderTextColor="white"></TextInput>
     </View>
     <View style={styles.userContainer}>
-      <Icon name="lock" size={25} color="#fff" />
+      <Icon name="lock" size={25}style={styles.icontxt} color="#fff" />
       <TextInput style={styles.icontext} secureTextEntry={true}  
-      multiline = {true}
+    
      
       onChangeText={(password) => this.setState({password})} value={this.state.password}
           placeholder="Password" placeholderTextColor="white" ></TextInput>
 </View>
 <View style={styles.userContainer}>
-      <Icon name="lock" size={25} color="#fff" />
-      <TextInput style={styles.icontext} multiline = {true}
+      <Icon name="lock" size={25}style={styles.icontxt} color="#fff" />
+      <TextInput style={styles.icontext} 
      
       onChangeText={(confirmpassword) => this.setState({confirmpassword})} value={this.state.confirmpassword}
 secureTextEntry={true}          placeholder="Confirm Password" placeholderTextColor="white" ></TextInput>
@@ -184,8 +184,8 @@ secureTextEntry={true}          placeholder="Confirm Password" placeholderTextCo
 </View>
 
 <View style={styles.userContainer}>
-      <Icon name="mobile" size={30} color="#fff" />
-      <TextInput style={styles.icontext} multiline = {true}
+      <Icon name="mobile" size={30} style={styles.icontxt}color="#fff" />
+      <TextInput style={styles.icontext}
      
       onChangeText={(phone) => this.setState({phone})} value={this.state.phone}
           placeholder="Phone Number" placeholderTextColor="white" ></TextInput>
