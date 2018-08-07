@@ -100,7 +100,7 @@ if(this.state.check==false)
     return false;
 }
 else
-this.props.navigation.navigate('loginscreen');
+this.props.navigation.navigate('Login');
 
 }//end validate
 

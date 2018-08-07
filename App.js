@@ -2,39 +2,49 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator,createDrawerNavigator,DrawerItems } from 'react-navigation';
 import Login from './App/components/screens/loginScreen/login';
 import Forgot from './App/components/screens/forgotpassword/forgot';
 import Register from './App/components/screens/registerscreen/register';
 import Home from './App/components/screens/homescreen/home';
+import SideBar from './App/components/screens/sidebar/sidebar.js';
 export default class App extends Component {
   render() {
     return (
-     //<Login/>
-      //<Forgot/>
-      //<Register/>
-       <RootStack />
+       <RootStack/>
     );
   }
 }
-const RootStack = createStackNavigator(
+
+
+
+const DrawerNavigator = createDrawerNavigator(
   {
-  
-    loginscreen: Login,
-    forgotpassword: Forgot,
-    register: Register,
-    home:Home,
+    Home:Home,
+    
   },
-  {
-    initialRouteName: 'loginscreen',
-    navigationOptions: {
-      header:null,
-  
+ 
+  {contentComponent: (props) => 
+    
+  { return  <SideBar/>}
       
-      
-    }
-  },
+  }
   
 );
 
+const RootStack = createStackNavigator(
+  {
+    Login: Login,
+    Forgot: Forgot,
+    Register: Register,
+   
+    DrawerNavigator:DrawerNavigator
+  },
+  {
+    initialRouteName: 'Login',
+    navigationOptions: {
+      header:null, 
+    }
+  },  
+);
 

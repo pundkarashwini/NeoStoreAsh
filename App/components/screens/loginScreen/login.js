@@ -18,7 +18,7 @@ export default class Login extends Component{
   
   
   validate=()=>{
-    //username
+ /* //username
     let regex = /^[a-zA-Z]\w+([\.-]?\w+)*@\w+([\.-]?\w+){1}(\.\w{2,3})$/;
     if(this.state.username=='' || !regex.test(this.state.username)){
       alert('Invalid Username');
@@ -32,8 +32,8 @@ export default class Login extends Component{
  {
    alert('enter strong password');
    return false;
- }else
- this.props.navigation.navigate('home')
+ }else*/
+ this.props.navigation.navigate('DrawerNavigator')
   }
 
   render() {
@@ -67,23 +67,24 @@ export default class Login extends Component{
 </View>
 
           <TouchableOpacity style={styles.btnlogin} 
-          onPress={this.validate} >        
+          onPress={this.validate}
+           >        
           <Text style={{color:'red',fontSize:30,fontWeight: 'bold'}}  onPress={this.validate}>LOGIN</Text>
         </TouchableOpacity>
         
         <Text style={styles.textforgot} 
-onPress={() => this.props.navigation.navigate('forgotpassword')}>        
+onPress={() => this.props.navigation.navigate('Forgot')}>        
 Forgot Password?</Text>
      </View>
      
      
      <View style={styles.container3}>
          <View style={{flex: 3,justifyContent:'center'}}>
-        <Text style={{ color:'#FFFFFF', fontSize:20,fontWeight: 'bold',marginLeft:5}} onPress={() => this.props.navigation.navigate('register')}>DONT HAVE AN ACCOUNT?</Text>
+        <Text style={{ color:'#FFFFFF', fontSize:20,fontWeight: 'bold',marginLeft:5}} onPress={() => this.props.navigation.navigate('Register')}>DONT HAVE AN ACCOUNT?</Text>
        </View>
       <View style={{flex: 1,justifyContent:'center'}}>
               <View style={styles.box}>
-              <Icon name="plus" size={40} color="#fff" onPress={() => this.props.navigation.navigate('register')}/>
+              <Icon name="plus" size={40} color="#fff" onPress={() => this.props.navigation.navigate('Register')}/>
               </View>
              
              </View>

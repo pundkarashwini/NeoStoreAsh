@@ -3,12 +3,16 @@ import {Platform, StyleSheet, Text, View,ImageBackground,TextInput,TouchableOpac
 import styles from "./homeStyle";
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Swiper from 'react-native-swiper';
-
+import SideBar from '../sidebar/sidebar';
 
 
 export default class Home extends Component{
   
-   
+constructor(props)
+{
+        super(props);
+        this.state={}
+}
  
 
   
@@ -17,17 +21,17 @@ export default class Home extends Component{
       return (
 
         <View style={{flex:1}}> 
-        <ImageBackground style={styles.backgroundImage} source={require('../../../assets/images/Android_Master_bg.jpg')} >
-        <View style={{flex:2,flexDirection:'row'}}>
+        
+        <View style={styles.container1} isDrawer="true">
         <Icon name="bars" size={40} color="white" style={styles.icon} 
-        onPress={() => this.props.navigation.navigate('loginscreen')}
+        onPress={() => this.props.navigation.openDrawer()}
         />
         <Text style={styles.texthead}>NeoSTORE</Text>
         <Icon name="search" size={25} color="white" style={styles.icon2} />
         </View>
        
        
-        <View style={{flex:6,flexDirection:'row',alignItems: 'stretch'}}>
+        <View style={styles.container2}>
         <Swiper style={styles.wrapper}>
         <View style={styles.slide}>
         <Image
@@ -54,46 +58,48 @@ source={require('../../../assets/images/table2.jpg')}
         />
         </View>
       </Swiper>
-        
-        
-      
-
         </View>
         
         
-        <View style={{flex:4,flexDirection:'row',}}>
+       
+        <View style={styles.container3}>
         
-        <Image
-style={styles.imgtable}
-source={require('../../../assets/images/table.jpeg')}
-        />
+        <View style={styles.view1}>
+<Text style={styles.tabletxt}> Tables </Text>
+<Icon name="table"  style={styles.tableicon} size={60} color="white"/>
+        </View>
     
         
         
-        <Image
-style={styles.imgchair}
-source={require('../../../assets/images/chair.jpg')}
-        />  
-            
+        <View style={styles.view2}>
         
+<Icon name="bed"  style={styles.sofaicon} size={60} color="white"/>
+<Text style={styles.sofatxt}> Sofas </Text>
+
+        
+         </View>   
+        
+</View>
+<View style={styles.container4}>
+        <View style={styles.view1}>
+        <Text style={styles.chairtxt}> Chairs </Text>
+<Icon name="wheelchair"  style={styles.chairicon} size={60} color="white"/>
+
         </View>
-        <View style={{flex:4,flexDirection:'row'}}>
-        <Image
-style={styles.imgtable}
-source={require('../../../assets/images/cupboard.jpeg')}
-        />
     
         
-        <Image
-style={styles.imgchair}
-source={require('../../../assets/images/Open-style-furniture.jpg')}
-        />  
+        <View style={styles.view2}>
         
-        
-        
+<Icon name="building"  style={styles.cupbicon} size={60} color="white"/>
+      <Text style={styles.cupbtxt}> Cupboards </Text>
+       
         </View>
+        
+        
+        
+ </View>
 
-        </ImageBackground>
+        
         </View>
     );
 }
