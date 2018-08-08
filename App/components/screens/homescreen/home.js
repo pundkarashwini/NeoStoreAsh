@@ -32,7 +32,7 @@ constructor(props)
        
        
         <View style={styles.container2}>
-        <Swiper style={styles.wrapper}>
+        <Swiper style={styles.wrapper} activeDotColor='red'>
         <View style={styles.slide}>
         <Image
 style={styles.imghome}

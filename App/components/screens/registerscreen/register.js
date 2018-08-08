@@ -5,6 +5,8 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import CheckBox from 'react-native-check-box';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';   
 import * as color  from '../../../utils/color';
+import Header from '../../../components/Header/Header';
+import {AsyncStorage} from 'react-native';
 var gender=[
     { label:"Male" ,value:0},
     {label:"Female" ,value:1}
@@ -21,10 +23,43 @@ export default class Register extends Component{
           password:'',
           confirmpassword:'',
           phone:'',
-          radio:'',
+          
           check:false,
-        };
+        }
       }
+      async register(){
+        let formData=new FormData();
+        formData.append('first_name',this.state.fname)
+        formData.append('last_name',this.state.lname)
+        formData.append('email',this.state.email)
+        formData.append('password',this.state.password)
+        formData.append('confirm_password',this.state.confirmpassword)
+        formData.append('gender',this.state.gender)
+        formData.append('phone_no',this.state.phone)
+        
+        await fetch("http://staging.php-dev.in:8844/trainingapp/api/users/register",
+        {
+          method:'POST',
+          body: formData
+    
+        })
+        .then((response) => response.json())
+        .then((response) => {
+          if(response.status==200){
+              
+            alert("successful");
+            this.props.navigation.navigate('Login');          }
+          else
+          {console.log(response);
+            alert(response.user_msg);
+        }
+        })
+        .catch((error)=>{
+          console.log(error.message);
+        });
+    
+      }
+    
  
 validate=()=>{
       //fname
@@ -100,7 +135,8 @@ if(this.state.check==false)
     return false;
 }
 else
-this.props.navigation.navigate('Login');
+this.register();
+//this.props.navigation.navigate('Login');
 
 }//end validate
 
@@ -116,12 +152,10 @@ this.props.navigation.navigate('Login');
       return (
         
         <View style={{flex:1 ,}}> 
+        <Header title={'Register'}
+        back={() => this.props.navigation.goBack(null)}/>
  <ImageBackground style={styles.backgroundImage} source={require('../../../assets/images/Android_Master_bg.jpg')} >
  <ScrollView>
-<View style={{flex:2,flexDirection:'row',backgroundColor:color.secondary ,}}>
-<Icon name="angle-left" size={40} color="white" style={styles.icon} onPress={() => this.props.navigation.goBack()}/>
-<Text style={styles.texthead}>Register</Text>
-</View>
 
 <View style={{flex:3,justifyContent:'flex-end',alignItems:'center'}}>
 <Text style={styles.text}>NeoSTORE</Text>

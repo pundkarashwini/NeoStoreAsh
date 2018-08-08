@@ -21,6 +21,7 @@ export default styles = StyleSheet.create({
         flex:4,
         flexDirection:'row',
         marginTop:15
+        
     },
     container4:{
         flex:4,
@@ -38,13 +39,14 @@ export default styles = StyleSheet.create({
     },
     icon:
     {
-        marginTop:40,
+        marginTop:35,
         marginLeft:margins.iconleft,
     },
     icon2:
     {
         marginTop:40,
-        marginLeft:40
+        
+       marginLeft:65
     },
     imghome:
     {

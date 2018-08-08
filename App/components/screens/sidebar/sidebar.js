@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import { Text, View ,Image,TouchableOpacity} from "react-native";
+import { Text, View ,Image,TouchableOpacity,ScrollView} from "react-native";
 import styles from "./sidebarStyle";
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-
+import {AsyncStorage} from 'react-native';
 export default class SideBar extends Component {
     constructor(props)
 {
@@ -10,9 +10,21 @@ export default class SideBar extends Component {
         this.state={ };
 }
   
-  render() {
+clearData = async () => {
+  
+
+  let token = ['email', 'password'];
+
+  AsyncStorage.multiRemove(token, (err) => {
+    this.props.navigation.navigate('Login');
+});
+}
+ 
+
+render() {
      return (
          <View style={styles.containermain}>
+         <ScrollView>
       <View style={styles.container1}>
       <Image
 style={styles.imgprofile}
@@ -63,12 +75,14 @@ source={require('../../../assets/images/profile.jpg')}
       <Text style={styles.itemtxt}> My Orders</Text></TouchableOpacity>
     </View>
 
-    <View style={styles.itemview}><TouchableOpacity style={{flexDirection:'row'}}>
+    <View style={styles.itemview}><TouchableOpacity style={{flexDirection:'row'}}
+onPress={() => this.clearData()}              >
       <Icon name="power-off"  style={styles.icon} size={25} color="white"/>
       <Text style={styles.itemtxt}> Logout</Text></TouchableOpacity>
     </View>
    
     </View>
+    </ScrollView>
     </View>
 
     );

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, ScrollView,Text, View,ImageBackground,TextInput,TouchableOpacity} from 'react-native';
 import styles from "./forgotStyle";
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-
+import Header from '../../../components/Header/Header';
 
 
 export default class Forgot extends Component{
@@ -42,13 +42,10 @@ export default class Forgot extends Component{
     render() {
       return (
 <View style={{flex:1}}> 
-
+<Header title={'Forgot Password'}
+        back={() => this.props.navigation.goBack(null)}/>
 <ImageBackground style={styles.backgroundImage} source={require('../../../assets/images/Android_Master_bg.jpg')} >
 
-<View style={{flex:1}}>
-<Icon name="angle-left" size={50} color="white" style={styles.icon} onPress={() => this.props.navigation.goBack()}/>
-
-</View>
 <View style={{flex:3}}>
 <Text style={styles.texthead}>NeoSTORE</Text>
 <Text style={styles.textforgot}>Forgot Your Password ?</Text>
