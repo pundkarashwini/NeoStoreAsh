@@ -10,15 +10,14 @@ export default class SideBar extends Component {
         this.state={ };
 }
   
-clearData = async () => {
-  
-
-  let token = ['email', 'password'];
-
-  AsyncStorage.multiRemove(token, (err) => {
+async clearData () {
+  AsyncStorage.removeItem('access_token', () => {
     this.props.navigation.navigate('Login');
 });
 }
+
+
+
  
 
 render() {

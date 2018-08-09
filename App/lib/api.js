@@ -3,4 +3,4 @@ export const login= "users/login";
 export const register= "users/register";
 export const forgot= "users/forgot";
 export const home= "users/home";
-
+export const login1="users/getUserData"

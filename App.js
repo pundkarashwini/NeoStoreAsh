@@ -8,28 +8,20 @@ import Forgot from './App/components/screens/forgotpassword/forgot';
 import Register from './App/components/screens/registerscreen/register';
 import Home from './App/components/screens/homescreen/home';
 import SideBar from './App/components/screens/sidebar/sidebar';
+import Startup from './App/components/screens/loginScreen/Startup';
 import {AsyncStorage} from 'react-native';
 
 export default class App extends Component {
   
-  async componentWillMount()
-  {
-    const loggedIn = AsyncStorage.getItem('email');
-
-  }
+  
   
 
+  
   render() {
-  if (!this.state.loggedIn)
-    return (
-     <RootStack/>
-            );
-    else{
-      return (
-     <Stack/>
-    );
-      }
-  }
+          return(
+          <RootStack/>
+          );
+          }
 }
 
 
@@ -55,30 +47,14 @@ const RootStack = createStackNavigator(
     Login: Login,
     Forgot: Forgot,
     Register: Register,
+    Startup:Startup,
    
     DrawerNavigator:DrawerNavigator
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Startup',
     navigationOptions: {
       header:null, 
     }
   },  
 );
-
-const Stack = createStackNavigator(
-  {
-    Login: Login,
-    Forgot: Forgot,
-    Register: Register,
-   
-    DrawerNavigator:DrawerNavigator
-  },
-  {
-    initialRouteName: 'DrawerNavigator',
-    navigationOptions: {
-      header:null, 
-    }
-  },  
-);
-

@@ -10,37 +10,20 @@ export default class Login extends Component{
   constructor(props) {
     super(props);
     this.state = { 
-      username: '',
-      password:''
+      username: 'ashwini@gmail.com',
+      password:'ashwini123'
     };
   }
   
-/*async componentWillMount() {
-   
-    const token = AsyncStorage.getItem('email');
-  if(this.state.token!=null)
-  {
-    this.props.navigation.navigate('DrawerNavigator');
-  }
-  else{
-    this.props.navigation.navigate('Login');
-  }
+
+
+
+  login(){
     
-    
-  }*/
-
-async storeData () {
-  
-     AsyncStorage.setItem('email', this.state.username);
-     AsyncStorage.setItem('password', this.state.password);
-}
-
-
-  async login(){
     let formData=new FormData();
     formData.append('email',this.state.username)
     formData.append('password',this.state.password)
-    await fetch("http://staging.php-dev.in:8844/trainingapp/api/users/login",
+    fetch("http://staging.php-dev.in:8844/trainingapp/api/users/login",
     {
       method:'POST',
       body: formData
@@ -49,18 +32,32 @@ async storeData () {
     .then((response) => response.json())
     .then((response) => {
       if(response.status==200){
-        alert("login successful");
-        this.props.navigation.navigate('DrawerNavigator')
+        console.log(response.data)
+        AsyncStorage.setItem('access_token',response.data.access_token,()=>{
+          this.userFetchDetails();
+          // this.props.navigation.navigate('DrawerNavigator',response)
+        });
       }
       else 
-        alert(response.user_msg);
-    })
-    .catch((error)=>{
-      console.log(error.message);
-    });
+        alert('Something went wrong');
 
+    })
+       .catch((error)=>{
+        alert('Something went wrong');
+  });
   }
 
+    userFetchDetails=(()=>{
+      fetch('http://staging.php-dev.in:8844/trainingapp/api/users/getUserData',
+      {
+        method:'GET',
+
+      })
+      .then((response) => response.json())
+      .then((response) => {
+        this.props.navigation.replace('DrawerNavigator',response)
+    })
+  })
   
   validate=()=>{
  //username
@@ -79,8 +76,9 @@ async storeData () {
    return false;
  }
  
- else
- this.login();
+ else{
+ 
+ this.login();}
  //this.props.navigation.navigate('DrawerNavigator')
 }
   

@@ -11,10 +11,22 @@ export default class Home extends Component{
 constructor(props)
 {
         super(props);
-        this.state={}
+        this.product_categories = props.navigation.state.params.data.product_categories;
+        console.log(this.productDetails)
 }
  
+swipeImage=(data)=>{
+        
+let array=[];
+for(let i=0 ;i<4;i++)
+{
+        array.push(<View style={styles.slide}>
+        <Image style={styles.imghome} source={{uri:data[i].icon_image}}/>
+        </View>)
 
+}
+return array;
+}
   
     render() {
       
@@ -33,30 +45,10 @@ constructor(props)
        
         <View style={styles.container2}>
         <Swiper style={styles.wrapper} activeDotColor='red'>
-        <View style={styles.slide}>
-        <Image
-style={styles.imghome}
-source={require('../../../assets/images/Open-style-furniture.jpg')}
-        />
-        </View>
-        <View style={styles.slide}>
-        <Image
-style={styles.imghome}
-source={require('../../../assets/images/table.jpeg')}
-        />
-        </View>
-        <View style={styles.slide}>
-        <Image
-style={styles.imghome}
-source={require('../../../assets/images/furnitures.jpg')}
-        />
-        </View>
-        <View style={styles.slide}>
-        <Image
-style={styles.imghome}
-source={require('../../../assets/images/table2.jpg')}
-        />
-        </View>
+                
+                {this.swipeImage(this.product_categories)}
+                
+     
       </Swiper>
         </View>
         
