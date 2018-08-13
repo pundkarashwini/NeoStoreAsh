@@ -31,6 +31,12 @@ export default styles = StyleSheet.create({
         
         
     },
+    icon2:
+    {
+        marginTop:40,
+        
+       marginLeft:65
+    },
     
 
 });

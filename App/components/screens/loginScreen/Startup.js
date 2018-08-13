@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Text, View ,Image,TouchableOpacity,ScrollView} from "react-native";
 import {AsyncStorage} from 'react-native';
+import * as url from '../../../lib/api.js';
+
 export default class Startup extends Component {
     constructor(props)
 {
@@ -13,11 +15,11 @@ componentWillMount()
      
         if(value!=null)
         {
-            fetch("http://staging.php-dev.in:8844/trainingapp/api/users/getUserData",
+            fetch(url.host+url.userdata,
              {
                 method:'GET',
                 headers:{
-                    access_token:value
+                    'access_token':value
              }
              })
              .then((response) => response.json())
@@ -27,7 +29,7 @@ componentWillMount()
                 }
                 else{
                     AsyncStorage.removeItem('access_token').then(()=>{
-                        this.props.navigation.replace('Login')
+                        this.props.navigation.replace('Login');
                     }
                 )}     
              })        
@@ -43,6 +45,8 @@ componentWillMount()
 }
 render() {
     return(
-     <View><Text>Loading</Text></View>);
+     <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+     <Text style={{color:'red',fontWeight:'bold',fontSize:40}}>Loading..</Text>
+     </View>);
          }
 }
