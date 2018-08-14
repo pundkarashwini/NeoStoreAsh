@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { Platform, StyleSheet, Text, ScrollView, View, ImageBackground, TextInput, TouchableOpacity, Alert } from 'react-native';
 import styles from "./loginStyle";
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { AsyncStorage } from 'react-native';
 import * as url from '../../../lib/api';
 import { apicall } from '../../../lib/fetcher';
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -23,7 +23,7 @@ export default class Login extends Component {
         let formData = new FormData();
         formData.append('email', this.state.username)
         formData.append('password', this.state.password)
-        apicall(url.host + url.login, 'POST', formData, null, this.callback = (response) => {
+        apicall(url.host + url.login, 'POST', formData, null, (response) => {
 
             if (response.status == 200) {
                 console.log(response.data)
@@ -31,8 +31,15 @@ export default class Login extends Component {
                     this.userFetchDetails();
 
                 });
-            } else
-                alert(response.user_msg);
+            } else {
+                //console.log(response.message)
+                if (response.hasOwnProperty('user_msg')) {
+                    alert(response.user_msg);
+                }
+                else {
+                    alert(response.message);
+                }
+            }
 
 
         });
@@ -40,9 +47,9 @@ export default class Login extends Component {
     }
 
     userFetchDetails = () => {
-        apicall(url.host + url.userdata, 'GET', null, null, this.callback = (response) => {
+        apicall(url.host + url.userdata, 'GET', null, null, (response) => {
             if (response.status == 200) {
-                alert(" login successful");
+
                 this.props.navigation.replace('DrawerNavigator', response)
 
             }
@@ -90,57 +97,55 @@ export default class Login extends Component {
             <View style={styles.container}>
 
                 <ImageBackground style={styles.backgroundImage} source={require('../../../assets/images/Android_Master_bg.jpg')} >
+                    <KeyboardAwareScrollView >
+                        <View style={styles.container1}>
 
-                    <View style={styles.container1}>
-
-                        <Text style={styles.text}>NeoSTORE</Text>
-                    </View>
-
-                    <View style={styles.container2}>
-                        <View style={styles.userContainer}>
-                            <Icon name="user" style={styles.icon} size={25} color="#fff" />
-                            <TextInput style={styles.txtinpt}
-
-
-                                placeholder="Username" placeholderTextColor="white"
-                                onChangeText={(username) => this.setState({ username })} value={this.state.username}
-                            ></TextInput>
+                            <Text style={styles.text}>NeoSTORE</Text>
                         </View>
 
-                        <View style={styles.userContainer}>
-                            <Icon name="lock" size={25} style={styles.icon} color="#fff" />
-                            <TextInput style={styles.txtinpt}
-
-                                placeholder="Password" placeholderTextColor="white"
-                                onChangeText={(password) => this.setState({ password })} value={this.state.password} secureTextEntry={true}  ></TextInput>
-                        </View>
-
-                        <TouchableOpacity style={styles.btnlogin}
-                            onPress={this.validate}
-                        >
-                            <Text style={{ color: 'red', fontSize: 30, fontWeight: 'bold' }} onPress={this.validate}>LOGIN</Text>
-                        </TouchableOpacity>
-
-                        <Text style={styles.textforgot}
-                            onPress={() => this.props.navigation.navigate('Forgot')}>
-                            Forgot Password?</Text>
-                    </View>
+                        <View style={styles.container2}>
+                            <View style={styles.userContainer}>
+                                <Icon name="user" style={styles.icon} size={25} color="#fff" />
+                                <TextInput style={styles.txtinpt}
 
 
-                    <View style={styles.container3}>
-                        <View style={{ flex: 3, justifyContent: 'center' }}>
-                            <Text style={{ color: '#FFFFFF', fontSize: 20, fontWeight: 'bold', marginLeft: 5 }} onPress={() => this.props.navigation.navigate('Register')}>DONT HAVE AN ACCOUNT?</Text>
-                        </View>
-                        <View style={{ flex: 1, justifyContent: 'center' }}>
-                            <View style={styles.box}>
-                                <Icon name="plus" size={40} color="#fff" onPress={() => this.props.navigation.navigate('Register')} />
+                                    placeholder="Username" placeholderTextColor="white"
+                                    onChangeText={(username) => this.setState({ username })} value={this.state.username}
+                                ></TextInput>
                             </View>
 
+                            <View style={styles.userContainer}>
+                                <Icon name="lock" size={25} style={styles.icon} color="#fff" />
+                                <TextInput style={styles.txtinpt}
+
+                                    placeholder="Password" placeholderTextColor="white"
+                                    onChangeText={(password) => this.setState({ password })} value={this.state.password} secureTextEntry={true}  ></TextInput>
+                            </View>
+
+                            <TouchableOpacity style={styles.btnlogin}
+                                onPress={this.validate}
+                            >
+                                <Text style={{ color: 'red', fontSize: 30, fontWeight: 'bold' }} onPress={this.validate}>LOGIN</Text>
+                            </TouchableOpacity>
+
+                            <Text style={styles.textforgot}
+                                onPress={() => this.props.navigation.navigate('Forgot')}>
+                                Forgot Password?</Text>
                         </View>
-                    </View>
+                        <View style={styles.container3}>
+                            <View style={{ flex: 3, justifyContent: 'center' }}>
+                                <Text style={{ color: '#FFFFFF', fontSize: 20, fontWeight: 'bold', marginLeft: 5 }} onPress={() => this.props.navigation.navigate('Register')}>DONT HAVE AN ACCOUNT?</Text>
+                            </View>
+                            <View style={{ flex: 1, justifyContent: 'center' }}>
+                                <View style={styles.box}>
+                                    <Icon name="plus" size={40} color="#fff" onPress={() => this.props.navigation.navigate('Register')} />
+                                </View>
 
-
+                            </View>
+                        </View>
+                    </KeyboardAwareScrollView >
                 </ImageBackground>
+
             </View>
 
         );

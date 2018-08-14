@@ -38,15 +38,22 @@ export default class Register extends Component {
         formData.append('confirm_password', this.state.confirmpassword)
         formData.append('gender', this.state.gender)
         formData.append('phone_no', this.state.phone)
-        apicall(url.host + url.register, 'POST', formData, null, this.callBack = (response) => {
+        apicall(url.host + url.register, 'POST', formData, null, (response) => {
 
             if (response.status == 200) {
 
                 alert("successful");
                 this.props.navigation.navigate('Login');
 
-            } else
-                alert(response.user_msg);
+            } else {
+                if (response.hasOwnProperty('user_msg')) {
+                    alert(response.user_msg);
+                }
+                else {
+                    alert(response.message);
+                }
+            }
+
 
 
         });
@@ -129,13 +136,6 @@ export default class Register extends Component {
             this.register();
 
     }//end validate
-
-
-
-
-
-
-
 
     render() {
 

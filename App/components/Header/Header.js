@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import FeatherIcon from 'react-native-vector-icons/dist/Feather';
 import styles from './HeaderStyle';
 
 export default class Header extends Component {
@@ -12,22 +13,26 @@ export default class Header extends Component {
     render() {
         return (
             <View style={styles.container}>
-
                 <TouchableOpacity style={styles.Backcontainer} onPress={this.props.back}>
-                    <Icon name="angle-left" size={40} color="white" style={styles.icon}
-                    />
-                </TouchableOpacity>
-                <View style={styles.Titlecontainer}>
+                    {this.props.isDrawer ?
+                        <Icon name="bars" size={35} color="white" fontWeight='bold' />
+                        : <Icon name="chevron-left" size={25} color="white" />}
 
-                    <Text style={styles.texthead}>
-                        {this.props.title}
-                    </Text>
+                </TouchableOpacity>
+
+                <View style={styles.Titlecontainer}>
+                    {this.props.isHead ? <Text color="white" style={styles.texthead1}>{this.props.title}</Text> : <Text style={styles.texthead}>{this.props.title}</Text>}
                 </View>
-                <View>
-                    <TouchableOpacity style={styles.Backcontainer} >
-                        <Icon name="search" size={25} color="white" style={styles.icon2} />
-                    </TouchableOpacity>
-                </View>
+
+
+
+
+                <TouchableOpacity style={styles.Backcontainer} >
+                    {this.props.isSearch ?
+                        <Icon name="search" size={30} style={styles.search} color="white" />
+                        : null}
+                </TouchableOpacity>
+
             </View>
         );
     }

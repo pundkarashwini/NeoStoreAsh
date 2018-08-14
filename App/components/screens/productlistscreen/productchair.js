@@ -4,8 +4,7 @@ import Header from '../../../components/Header/Header';
 import styles from "./productlistStyle";
 import * as url from '../../../lib/api';
 import { apicall } from '../../../lib/fetcher';
-
-export default class ProductTable extends Component {
+export default class Productchair extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,7 +15,7 @@ export default class ProductTable extends Component {
 
     }
     componentDidMount() {
-        apicall(url.host + url.productlist + "?product_category_id=1", 'GET', null, null, (response) => {
+        apicall(url.host + url.productlist + "?product_category_id=2", 'GET', null, null, (response) => {
 
             this.setState({ arraydata: response.data })
 
@@ -32,7 +31,7 @@ export default class ProductTable extends Component {
         console.log(this.state.arraydata)
         return (
             <View style={{ flex: 1 }}>
-                <Header title={'Tables'} isSearch="true"
+                <Header title={'Chairs'} isSearch="true"
                     back={() => this.props.navigation.goBack(null)} />
                 <View style={styles.listcontainer}>
                     <FlatList

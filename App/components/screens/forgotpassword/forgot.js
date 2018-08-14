@@ -18,7 +18,7 @@ export default class Forgot extends Component {
     forgot() {
         let formData = new FormData();
         formData.append('email', this.state.username)
-        apicall(url.host + url.forgot, 'POST', formData, null, this.callBack = (response) => {
+        apicall(url.host + url.forgot, 'POST', formData, null, (response) => {
 
             if (response.status == 200) {
 
@@ -26,8 +26,15 @@ export default class Forgot extends Component {
                 this.props.navigation.navigate('Login');
 
 
-            } else
-                alert(response.user_msg);
+            } else {
+                if (response.hasOwnProperty('user_msg')) {
+                    alert(response.user_msg);
+                }
+                else {
+                    alert(response.message);
+                }
+            }
+
 
 
         });
@@ -59,24 +66,25 @@ export default class Forgot extends Component {
             <View style={{ flex: 1 }}>
                 <Header title={'Forgot Password'}
                     back={() => this.props.navigation.goBack(null)} />
+
                 <ImageBackground style={styles.backgroundImage} source={require('../../../assets/images/Android_Master_bg.jpg')} >
-
-                    <View style={{ flex: 3 }}>
-                        <Text style={styles.texthead}>NeoSTORE</Text>
-                        <Text style={styles.textforgot}>Forgot Your Password ?</Text>
-                        <Text style={styles.textforgot1}>Please enter username you provided during the registration process..</Text>
-                    </View>
-
-                    <View style={{ flex: 5 }}>
-                        <View style={styles.userContainer}>
-                            <Icon name="user" size={25} style={styles.icontxt} color="#fff" />
-                            <TextInput style={styles.txtinpt}
-
-
-                                placeholder="Username" placeholderTextColor="white"
-                                onChangeText={(username) => this.setState({ username })} value={this.state.username}></TextInput>
+                    <ScrollView>
+                        <View style={{ flex: 3 }}>
+                            <Text style={styles.texthead}>NeoSTORE</Text>
+                            <Text style={styles.textforgot}>Forgot Your Password ?</Text>
+                            <Text style={styles.textforgot1}>Please enter username you provided during the registration process..</Text>
                         </View>
-                        {/* <View style={styles.userContainer}>
+
+                        <View style={{ flex: 5 }}>
+                            <View style={styles.userContainer}>
+                                <Icon name="user" size={25} style={styles.icontxt} color="#fff" />
+                                <TextInput style={styles.txtinpt}
+
+
+                                    placeholder="Username" placeholderTextColor="white"
+                                    onChangeText={(username) => this.setState({ username })} value={this.state.username}></TextInput>
+                            </View>
+                            {/* <View style={styles.userContainer}>
     <Icon name="lock" size={25} style={styles.icontxt} color="#fff" />
     <TextInput style={styles.txtinpt} onChangeText={(password) => this.setState({password})} value={this.state.password}
     secureTextEntry={true}    
@@ -91,11 +99,13 @@ export default class Forgot extends Component {
           placeholder="Confirm Password" placeholderTextColor="white" ></TextInput>
 </View>
       */}
-                        <TouchableOpacity style={styles.btnlogin} onPress={this.validate}>
-                            <Text style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }} onPress={this.validate}>SEND ME CODE</Text>
-                        </TouchableOpacity>
-                    </View>
+                            <TouchableOpacity style={styles.btnlogin} onPress={this.validate}>
+                                <Text style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }} onPress={this.validate}>SEND ME CODE</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </ScrollView>
                 </ImageBackground>
+
             </View>
 
 
