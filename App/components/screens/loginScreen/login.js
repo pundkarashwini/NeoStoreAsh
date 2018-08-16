@@ -5,13 +5,15 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { AsyncStorage } from 'react-native';
 import * as url from '../../../lib/api';
 import { apicall } from '../../../lib/fetcher';
+import { Loader } from '../../Loader/loader';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 export default class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username: 'ashwini@gmail.com',
-            password: 'ashwini123'
+            password: 'ashwini123',
+            loading: false
         };
     }
 
@@ -24,7 +26,7 @@ export default class Login extends Component {
         formData.append('email', this.state.username)
         formData.append('password', this.state.password)
         apicall(url.host + url.login, 'POST', formData, null, (response) => {
-
+            this.setState({ loading: true })
             if (response.status == 200) {
                 console.log(response.data)
                 AsyncStorage.setItem('access_token', response.data.access_token, () => {
@@ -54,8 +56,12 @@ export default class Login extends Component {
 
             }
             else {
-                console.log(response.status)
-                alert('something went wrong');
+                if (response.hasOwnProperty('user_msg')) {
+                    alert(response.user_msg);
+                }
+                else {
+                    alert(response.message);
+                }
             }
         })
 
@@ -93,11 +99,14 @@ export default class Login extends Component {
 
 
     render() {
+
         return (
             <View style={styles.container}>
 
                 <ImageBackground style={styles.backgroundImage} source={require('../../../assets/images/Android_Master_bg.jpg')} >
+                    {this.state.loading ? <Loader /> : null}
                     <KeyboardAwareScrollView >
+
                         <View style={styles.container1}>
 
                             <Text style={styles.text}>NeoSTORE</Text>

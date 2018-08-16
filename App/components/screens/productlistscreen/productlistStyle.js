@@ -24,6 +24,8 @@ export default styles = StyleSheet.create({
     view3: {
         flex: 1,
         flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
 
 
     },

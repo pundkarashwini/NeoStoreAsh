@@ -40,6 +40,7 @@ export default class Cupboard extends Component {
                 <View style={styles.listcontainer}>
                     <FlatList
                         data={this.state.arraydata}
+                        keyExtractor={(item, index) => index + ""}
                         renderItem={({ item }) =>
                             <View style={{ borderBottomColor: '#4F4F4F', borderBottomWidth: 1 }}>
                                 <TouchableOpacity style={styles.touchopacity}>
@@ -54,7 +55,7 @@ export default class Cupboard extends Component {
                                             <View>
                                                 <Text style={styles.textcost}> Rs. {item.cost}</Text>
                                             </View>
-                                            <View style={{ marginLeft: 60, }}>
+                                            <View style={{ marginLeft: 60, alignContent: 'center' }}>
 
                                                 <StarRating
                                                     maxStars={5}

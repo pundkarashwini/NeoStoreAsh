@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableOpacity, ScrollView } from "react-native";
+import { Text, View, Image, TouchableOpacity, ScrollView, ActivityIndicator } from "react-native";
 import { AsyncStorage } from 'react-native';
 import * as url from '../../../lib/api.js';
 import { apicall } from '../../../lib/fetcher';
+import { Loader } from '../../Loader/loader';
 export default class Startup extends Component {
     constructor(props) {
         super(props);
+
     }
 
     componentWillMount() {
@@ -46,31 +48,12 @@ export default class Startup extends Component {
 
         })
     }
-    // fetch(url.host + url.userdata,
-    //     {
-    //         method: 'GET',
-    //         headers: {
-    //             'access_token': value
-    //         }
-    //     })
-    //     .then((response) => response.json())
-    //     .then((response) => {
-    //         if (response.status == 200) {
-    //             this.props.navigation.replace('DrawerNavigator', response)
-    //         }
-    //         else {
-    //             AsyncStorage.removeItem('access_token').then(() => {
-    //                 this.props.navigation.replace('Login');
-    //             }
-    //             )
-    //         }
-    //     })
-
 
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 40 }}>Loading..</Text>
-            </View>);
+            <Loader />
+
+
+        );
     }
 }
