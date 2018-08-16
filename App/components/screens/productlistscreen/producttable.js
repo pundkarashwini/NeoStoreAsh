@@ -4,7 +4,7 @@ import Header from '../../../components/Header/Header';
 import styles from "./productlistStyle";
 import * as url from '../../../lib/api';
 import { apicall } from '../../../lib/fetcher';
-
+import StarRating from 'react-native-star-rating';
 export default class ProductTable extends Component {
     constructor(props) {
         super(props);
@@ -49,9 +49,20 @@ export default class ProductTable extends Component {
                                         <Text style={styles.text}> {item.name}</Text>
                                         <Text style={styles.text1}> {item.producer}</Text>
                                         <View style={styles.view3}>
-                                            <Text style={styles.textcost}> Rs. {item.cost}</Text>
+                                            <View>
+                                                <Text style={styles.textcost}> Rs. {item.cost}</Text>
+                                            </View>
+                                            <View style={{ marginLeft: 60, }}>
+                                                <StarRating
+                                                    maxStars={5}
+                                                    fullStarColor={'#FCB900'}
+                                                    rating={item.rating}
+                                                    starSize={20}
+                                                // starStyle={{ marginLeft: 5 }}
 
+                                                />
 
+                                            </View>
                                         </View>
                                     </View>
                                 </TouchableOpacity>

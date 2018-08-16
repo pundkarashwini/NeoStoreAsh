@@ -18,15 +18,13 @@ export default styles = StyleSheet.create({
     view2: {
         flex: 1,
         padding: 5,
-        borderColor: 'red',
-        borderWidth: 2
+
 
     },
     view3: {
         flex: 1,
         flexDirection: 'row',
-        borderColor: 'red',
-        borderWidth: 2
+
 
     },
     text: {
@@ -42,7 +40,9 @@ export default styles = StyleSheet.create({
     textcost: {
         color: '#FE4040',
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 20,
+        // marginRight: 50
+
 
 
     }

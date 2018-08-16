@@ -4,7 +4,10 @@ import Header from '../../../components/Header/Header';
 import styles from "./productlistStyle";
 import * as url from '../../../lib/api';
 import { apicall } from '../../../lib/fetcher';
-import StarRating from 'react-star-rating';
+import StarRating from 'react-native-star-rating';
+
+
+
 export default class Cupboard extends Component {
     constructor(props) {
         super(props);
@@ -48,13 +51,19 @@ export default class Cupboard extends Component {
                                         <Text style={{ color: '#4F4F4F', fontWeight: 'bold', fontSize: 18 }}> {item.name}</Text>
                                         <Text style={styles.text1}> {item.producer}</Text>
                                         <View style={styles.view3}>
-                                            <Text style={styles.textcost}> Rs. {item.cost}</Text>
-                                            <StarRating
-                                                name="rating"
-                                                ratingAmount={5}
-                                                size={50}
-                                            />
+                                            <View>
+                                                <Text style={styles.textcost}> Rs. {item.cost}</Text>
+                                            </View>
+                                            <View style={{ marginLeft: 60, }}>
 
+                                                <StarRating
+                                                    maxStars={5}
+                                                    fullStarColor={'#FCB900'}
+                                                    rating={item.rating}
+                                                    starSize={20}
+
+                                                />
+                                            </View>
                                         </View>
                                     </View>
                                 </TouchableOpacity>
