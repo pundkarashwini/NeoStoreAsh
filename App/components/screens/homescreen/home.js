@@ -44,7 +44,7 @@ export default class Home extends Component {
                 </View>
                 <View style={styles.container3}>
                     <View style={styles.view1}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('ProductTable', { ID: 1 })}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { ID: 1, title: 'Tables' })}>
                             <Text style={styles.tabletxt}> Tables </Text>
                             <Icon name="table" style={styles.tableicon} size={60} color="white" />
                         </TouchableOpacity>
@@ -53,7 +53,7 @@ export default class Home extends Component {
 
 
                     <View style={styles.view2}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('ProductTable', { ID: 3 })}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { ID: 3, title: 'Sofas' })}>
                             <Icon name="bed" style={styles.sofaicon} size={60} color="white" />
                             <Text style={styles.sofatxt}> Sofas </Text>
                         </TouchableOpacity>
@@ -63,7 +63,7 @@ export default class Home extends Component {
                 </View>
                 <View style={styles.container4}>
                     <View style={styles.view1}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('ProductTable', { ID: 2 }, { title: table })}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { ID: 2, title: 'Chairs' })}>
 
                             <Text style={styles.chairtxt}> Chairs </Text>
                             <Icon name="wheelchair" style={styles.chairicon} size={60} color="white" />
@@ -72,7 +72,7 @@ export default class Home extends Component {
 
 
                     <View style={styles.view2}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('ProductTable', { ID: 4 })}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { ID: 4, title: 'Beds' })}>
 
                             <Icon name="building" style={styles.cupbicon} size={60} color="white" />
                             <Text style={styles.cupbtxt}> Cupboard </Text>

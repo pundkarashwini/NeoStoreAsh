@@ -9,10 +9,7 @@ import Register from './App/components/screens/registerscreen/register';
 import Home from './App/components/screens/homescreen/home';
 import SideBar from './App/components/screens/sidebar/sidebar';
 import Startup from './App/components/screens/loginScreen/Startup';
-import ProductTable from './App/components/screens/productlistscreen/producttable';
-import Productchair from './App/components/screens/productlistscreen/productchair';
-import Sofa from './App/components/screens/productlistscreen/sofa';
-import Cupboard from './App/components/screens/productlistscreen/Cupboard';
+import Productlist from './App/components/screens/productlistscreen/productlist';
 
 import { AsyncStorage } from 'react-native';
 
@@ -53,10 +50,7 @@ const RootStack = createStackNavigator(
         Forgot: Forgot,
         Register: Register,
         Startup: Startup,
-        ProductTable: ProductTable,
-        Productchair: Productchair,
-        Sofa: Sofa,
-        Cupboard: Cupboard,
+        Productlist: Productlist,
 
         DrawerNavigator: DrawerNavigator
     },

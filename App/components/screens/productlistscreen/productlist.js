@@ -6,16 +6,18 @@ import * as url from '../../../lib/api';
 import { apicall } from '../../../lib/fetcher';
 import StarRating from 'react-native-star-rating';
 import { Loader } from '../../Loader/loader';
-export default class ProductTable extends Component {
+export default class Productlist extends Component {
     constructor(props) {
         super(props);
         this.state = {
             arraydata: [],
             page: 1,
             limit: 6,
+
             loading: false,
             product_category_id: this.props.navigation.state.params.ID,
-            title: this.props.navigation.state.params.title
+            title: this.props.navigation.state.params.title,
+
         };
 
 
@@ -29,46 +31,54 @@ export default class ProductTable extends Component {
 
     fetchResult = () => {
         const { page, limit, arraydata } = this.state;
-        return apicall(url.host + url.productlist + "?product_category_id=" + this.state.product_category_id + "&limit=" + this.state.limit + "page=" + this.state.page, 'GET', null, null, (response) => {
+
+        apicall(url.host + url.productlist + "?product_category_id=" + this.state.product_category_id + "&limit=6&page=" + this.state.page, 'GET', null, null, (response) => {
             this.setState({ loading: false })
+            if (!response.data) return;
+
             if (response.status == 200) {
 
                 this.setState({
                     arraydata: arraydata.concat(response.data),
-                    //arraydata: response.data,
+
 
                     page: page + 1,
-                    limit: limit + 6,
+
 
 
                 });
-                this.setState({ arraydata: response.data })
+
+                // this.setState({ total: response.data.length })
+                // console.log(response.data.length)
             }
             else {
+
                 if (response.hasOwnProperty('user_msg')) {
+
                     alert(response.user_msg);
                 }
                 else {
                     alert(response.message);
                 }
             }
+
         });
 
 
     }
 
     render() {
-        console.log(this.state.arraydata)
+        //console.log(this.state.arraydata.length)
         return (
             <View style={{ flex: 1 }}>
-                <Header title={'Tables'} isSearch="true"
+                <Header title={this.state.title} isSearch="true"
                     back={() => this.props.navigation.goBack(null)} />
                 {this.state.loading ? <Loader /> : null}
                 <View style={styles.listcontainer}>
                     <FlatList
                         data={this.state.arraydata}
                         onEndReached={this.fetchResult}
-                        onEndReachedThreshold={0.7}
+                        onEndReachedThreshold={0.1}
                         keyExtractor={(item, index) => index + ""}
                         renderItem={({ item }) =>
                             <View style={{ borderBottomColor: '#4F4F4F', borderBottomWidth: 1 }}>
@@ -99,10 +109,15 @@ export default class ProductTable extends Component {
                                         </View>
                                     </View>
                                 </TouchableOpacity>
+
                             </View>
+
                         }
 
                     />
+                    <View style={styles.view4} ><Text style={{ fontSize: 20, textAlign: 'center' }}>
+                        {this.state.arraydata.length} of {this.state.arraydata.length} </Text>
+                    </View>
 
                 </View>
 

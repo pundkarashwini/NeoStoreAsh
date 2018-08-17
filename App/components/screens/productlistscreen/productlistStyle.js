@@ -29,6 +29,16 @@ export default styles = StyleSheet.create({
 
 
     },
+    view4: {
+        position: 'absolute',
+        marginLeft: (global.OS === 'ios') ? 160 : 150,
+        height: 30,
+        width: 80,
+        backgroundColor: 'gray',
+
+        marginTop: (global.OS === 'ios') ? 570 : 540,
+
+    },
     text: {
         color: '#4F4F4F',
         fontWeight: 'bold',
