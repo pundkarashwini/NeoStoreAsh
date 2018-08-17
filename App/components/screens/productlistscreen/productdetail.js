@@ -37,9 +37,9 @@ export default class Productdetail extends Component {
     Image = (data) => {
         console.log(data)
         let arrayimg = [];
-        for (let i = 0; i < 2; i++) {
-            arrayimg.push(<View key={'ashu' + i} >
-                <Image style={{ height: 80, width: 100 }} source={{ uri: data[i].image }} />
+        for (let i = 0; i < 1; i++) {
+            arrayimg.push(<View key={'ashu' + i} style={styles.img}>
+                <Image style={{ height: 140, width: 250 }} source={{ uri: data[i].image }} />
             </View>)
 
         }
@@ -47,7 +47,7 @@ export default class Productdetail extends Component {
     }
 
     render() {
-        console.log(this.state.array)
+        console.log(this.state.array.product_images)
         return (
             <View style={{ flex: 1 }}>
                 <Header title={this.state.title} isSearch="true"
@@ -78,12 +78,14 @@ export default class Productdetail extends Component {
                 </View>
 
                 <View style={styles.view2}>
-                    <Text style={styles.textcost}> Rs. {this.state.array.cost}</Text>
-                    <View style={{ marginLeft: 200 }}>
-                        <Icon name="share-alt" size={25} color="gray" /></View>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={styles.textcost}> Rs. {this.state.array.cost}</Text>
+
+                        <Icon name="share-alt" size={25} color="gray" style={styles.icon} /></View>
                     {/* images */}
-                    <View>
-                        {this.Image(this.state.array)}
+                    {/* <View>for large img</View> */}
+                    <View style={{ flex: 1, marginLeft: 5, flexDirection: 'row', padding: 5 }}>
+                        {this.state.array.product_images != undefined ? this.Image(this.state.array.product_images) : null}
 
                     </View>
 

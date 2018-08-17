@@ -18,14 +18,15 @@ export default styles = StyleSheet.create({
         borderColor: 'red',
         borderWidth: 2,
         padding: 10,
-        flexDirection: 'row'
+        //flexDirection: 'row'
 
     },
 
     view3: {
-        flex: 2,
+        flex: 3,
         borderColor: 'red',
-        borderWidth: 2
+        borderWidth: 2,
+        flexDirection: 'row'
 
 
     },
@@ -75,6 +76,15 @@ export default styles = StyleSheet.create({
 
 
 
+    },
+    img: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    icon: {
+        marginLeft: 200
     }
 
 
