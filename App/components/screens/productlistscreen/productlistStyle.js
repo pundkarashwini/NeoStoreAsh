@@ -5,7 +5,7 @@ import * as margins from '../../../utils/margins';
 import global from '../../../lib/global';
 export default styles = StyleSheet.create({
     listcontainer: {
-
+        flex: 1
     },
     touchopacity:
     {
@@ -41,7 +41,7 @@ export default styles = StyleSheet.create({
     },
     text: {
         color: '#4F4F4F',
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
         fontSize: 20
     },
     text1: {

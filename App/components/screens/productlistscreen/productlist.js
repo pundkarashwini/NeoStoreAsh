@@ -13,7 +13,6 @@ export default class Productlist extends Component {
             arraydata: [],
             page: 1,
             limit: 6,
-
             loading: false,
             product_category_id: this.props.navigation.state.params.ID,
             title: this.props.navigation.state.params.title,
@@ -30,11 +29,13 @@ export default class Productlist extends Component {
     }
 
     fetchResult = () => {
-        const { page, limit, arraydata } = this.state;
+        this.setState({ loading: true })
+        const { page, arraydata } = this.state;
 
-        apicall(url.host + url.productlist + "?product_category_id=" + this.state.product_category_id + "&limit=6&page=" + this.state.page, 'GET', null, null, (response) => {
+        return apicall(url.host + url.productlist + "?product_category_id=" + this.state.product_category_id + "&limit=7&page=" + this.state.page, 'GET', null, null, (response) => {
             this.setState({ loading: false })
             if (!response.data) return;
+
 
             if (response.status == 200) {
 
@@ -48,7 +49,7 @@ export default class Productlist extends Component {
 
                 });
 
-                // this.setState({ total: response.data.length })
+
                 // console.log(response.data.length)
             }
             else {
@@ -68,7 +69,7 @@ export default class Productlist extends Component {
     }
 
     render() {
-        //console.log(this.state.arraydata.length)
+        //console.log(this.state.arraydata)
         return (
             <View style={{ flex: 1 }}>
                 <Header title={this.state.title} isSearch="true"
@@ -83,7 +84,7 @@ export default class Productlist extends Component {
                         renderItem={({ item }) =>
                             <View style={{ borderBottomColor: '#4F4F4F', borderBottomWidth: 1 }}>
 
-                                <TouchableOpacity style={styles.touchopacity}>
+                                <TouchableOpacity style={styles.touchopacity} onPress={() => this.props.navigation.navigate('Productdetail', { ID: item.id, title: item.name, category: this.state.title })}>
                                     <View>
                                         <Image style={{ height: 80, width: 100 }}
                                             source={{ uri: item.product_images }} />

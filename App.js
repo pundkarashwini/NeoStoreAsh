@@ -10,6 +10,7 @@ import Home from './App/components/screens/homescreen/home';
 import SideBar from './App/components/screens/sidebar/sidebar';
 import Startup from './App/components/screens/loginScreen/Startup';
 import Productlist from './App/components/screens/productlistscreen/productlist';
+import Productdetail from './App/components/screens/productlistscreen/productdetail';
 
 import { AsyncStorage } from 'react-native';
 
@@ -51,6 +52,7 @@ const RootStack = createStackNavigator(
         Register: Register,
         Startup: Startup,
         Productlist: Productlist,
+        Productdetail: Productdetail,
 
         DrawerNavigator: DrawerNavigator
     },

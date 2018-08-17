@@ -39,21 +39,21 @@ export default class SideBar extends Component {
                             <Text style={styles.itemtxt}> My Cart</Text></TouchableOpacity>
                         </View>
 
-                        <View style={styles.itemview}><TouchableOpacity onPress={() => this.props.navigation.navigate('ProductTable')} style={{ flexDirection: 'row' }}>
+                        <View style={styles.itemview}><TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { ID: 1, title: 'Tables' })} style={{ flexDirection: 'row' }}>
                             <Icon name="table" style={styles.icon} size={25} color="white" />
                             <Text style={styles.itemtxt}> Tables</Text></TouchableOpacity>
                         </View>
 
-                        <View style={styles.itemview}><TouchableOpacity onPress={() => this.props.navigation.navigate('Sofa')} style={{ flexDirection: 'row' }}>
+                        <View style={styles.itemview}><TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { ID: 3, title: 'Sofas' })} style={{ flexDirection: 'row' }}>
                             <Icon name="bed" style={styles.icon} size={25} color="white" />
                             <Text style={styles.itemtxt}> Sofas</Text></TouchableOpacity>
                         </View>
-                        <View style={styles.itemview}><TouchableOpacity onPress={() => this.props.navigation.navigate('Productchair')} style={{ flexDirection: 'row' }}>
+                        <View style={styles.itemview}><TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { ID: 2, title: 'Chairs' })} style={{ flexDirection: 'row' }}>
                             <Icon name="wheelchair" style={styles.icon} size={25} color="white" />
                             <Text style={styles.itemtxt}> Chairs</Text></TouchableOpacity>
                         </View>
 
-                        <View style={styles.itemview}><TouchableOpacity onPress={() => this.props.navigation.navigate('Cupboard')} style={{ flexDirection: 'row' }}>
+                        <View style={styles.itemview}><TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { ID: 4, title: 'Beds' })} style={{ flexDirection: 'row' }}>
                             <Icon name="building" style={styles.icon} size={25} color="white" />
                             <Text style={styles.itemtxt}> Cupboards</Text></TouchableOpacity>
                         </View>
