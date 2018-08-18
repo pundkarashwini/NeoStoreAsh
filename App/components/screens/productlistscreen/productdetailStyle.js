@@ -7,40 +7,42 @@ export default styles = StyleSheet.create({
 
 
     view1: {
-        flex: 2,
-        borderColor: 'red',
-        borderWidth: 2,
-        padding: 10,
+        flex: 3,
+
+        //padding: 5
 
     },
     view2: {
-        flex: 4,
-        borderColor: 'red',
-        borderWidth: 2,
+        flex: 3,
         padding: 10,
-        //flexDirection: 'row'
 
     },
 
     view3: {
         flex: 3,
-        borderColor: 'red',
-        borderWidth: 2,
-        flexDirection: 'row'
+        justifyContent: 'center',
+        // alignItems: 'center',
+        flexDirection: 'row',
+
+        padding: 10,
+
 
 
     },
     view4: {
-        flex: 4,
-        borderColor: 'red',
-        borderWidth: 2
+        flex: 2,
+
+        padding: 20
 
 
     },
     view5: {
-        flex: 2,
-        borderColor: 'red',
-        borderWidth: 2
+        flex: 1,
+        flexDirection: 'row',
+        padding: 10,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+
 
 
     },
@@ -64,31 +66,96 @@ export default styles = StyleSheet.create({
     {
         flex: 1,
         flexDirection: 'row',
-        //justifyContent: 'space-around',
-        //alignItems: 'center',
-        marginLeft: 5
+        marginRight: 10,
+        padding: 5
+
     },
     textcost: {
         color: '#FE4040',
         fontWeight: 'bold',
         fontSize: 20,
-        marginLeft: 20
+        marginLeft: 35
 
 
 
     },
     img: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        height: 110,
+        width: 150,
+        borderColor: '#282727',
+        borderWidth: 1,
+        marginTop: 10
+        // justifyContent: 'center',
+        // alignItems: 'center'
+
 
     },
+    mainimg: {
+
+        height: 150,
+        width: 220,
+        marginTop: 5,
+        marginBottom: 5
+
+
+
+
+    },
+
     icon: {
-        marginLeft: 200
+        marginLeft: 150
     }
+    ,
+    touchopacity: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        //marginLeft: 10,
+        flex: 3,
 
+        flexDirection: 'row',
+        //  marginTop: 20,
+        padding: 5,
 
+    }
+    ,
+    btntxt: {
+        color: '#282727',
+        fontSize: 30,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    btntxt1: {
+        color: 'white',
+        fontSize: 30,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    btntouchopacity:
+    {
+        backgroundColor: '#bfbfbf',
+        marginLeft: 5,
+        alignItems: 'center',
+        height: 50,
+        borderRadius: 5,
+        width: 170,
+        justifyContent: 'center',
+        borderColor: '#7F7F7F',
+        borderWidth: 1
+        // color: '#7F7F7F'
+    },
+    btntouchopacity1:
+    {
+        backgroundColor: 'red',
 
+        alignItems: 'center',
+        height: 50,
+        borderRadius: 5,
+        width: 170,
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: 'red'
+    },
 
 
 
