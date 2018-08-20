@@ -10,20 +10,21 @@ export default styles = StyleSheet.create({
         height: (global.OS === 'ios') ? 70 : 50,
         width: '100%',
         backgroundColor: 'red',
-        alignItems: 'center'
+        alignItems: 'center',
+
     },
     Titlecontainer: {
-        width: '70%',
+        width: '80%',
         alignItems: 'center'
     },
     Backcontainer: {
-        width: '15%',
+        width: '10%',
         alignItems: 'center'
     },
     texthead: {
         color: color.primary,
         fontSize: 25,
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
         //marginTop: margins.icontop,
         alignSelf: "center",
 
@@ -41,7 +42,7 @@ export default styles = StyleSheet.create({
     search:
     {
         width: '80%',
-        fontWeight: 'bold',
+        //fontWeight: 'bold',
         height: (global.OS === 'ios') ? '40%' : '60%',
         alignSelf: "center",
 
