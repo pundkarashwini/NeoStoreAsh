@@ -116,9 +116,9 @@ export default class Productlist extends Component {
                         }
 
                     />
-                    <View style={styles.view4} ><Text style={{ fontSize: 20, textAlign: 'center' }}>
+                    <TouchableOpacity style={styles.view4} ><Text style={{ fontSize: 20, textAlign: 'center', color: 'white' }}>
                         {this.state.arraydata.length} of {this.state.arraydata.length} </Text>
-                    </View>
+                    </TouchableOpacity>
 
                 </View>
 

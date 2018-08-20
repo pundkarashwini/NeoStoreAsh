@@ -5,3 +5,5 @@ export const forgot = "users/forgot";
 export const userdata = "users/getUserData";
 export const productlist = "products/getList";
 export const productdetail = "products/getDetail";
+export const setRating = "products/setRating";
+export const addToCart = "addToCart";

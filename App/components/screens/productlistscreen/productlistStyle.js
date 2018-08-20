@@ -34,9 +34,12 @@ export default styles = StyleSheet.create({
         marginLeft: (global.OS === 'ios') ? 160 : 150,
         height: 30,
         width: 80,
-        backgroundColor: 'gray',
+        backgroundColor: 'black',
+        borderRadius: 3,
+        marginTop: (global.OS === 'ios') ? 560 : 530,
+        opacity: 0.7
 
-        marginTop: (global.OS === 'ios') ? 570 : 540,
+
 
     },
     text: {

@@ -8,6 +8,7 @@ import StarRating from 'react-native-star-rating';
 import { Loader } from '../../Loader/loader';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Modal from "react-native-modal";
+import { AsyncStorage } from 'react-native';
 
 export default class Productdetail extends Component {
 
@@ -36,20 +37,104 @@ export default class Productdetail extends Component {
     toggleModalrate = () => {
         this.setState({ israteModalVisible: !this.state.israteModalVisible });
     }
+
+    FetchRating = () => {
+
+        let formData = new FormData();
+        formData.append('rating', this.state.rate)
+
+
+        apicall(url.host + url.setRating + "?product_id=1", 'POST', formData, null, (response) => {
+            console.log(response.data)
+            // if (response.status == 200) {
+            //     this.setState({
+            //         
+            //     })
+            // }
+            // else {
+
+            //     if (response.hasOwnProperty('user_msg')) {
+
+            //         alert(response.user_msg);
+            //     }
+            //     else {
+            //         alert(response.message);
+            //     }
+            // }
+
+
+        });
+
+
+    }
+    FetchAddCart = () => {
+        let formData = new FormData();
+        formData.append('quantity', this.state.quantity)
+        formData.append('product_id', this.state.pid)
+        AsyncStorage.getItem('access_token').then((value) => {
+            console.log(value)
+            this.setState({
+                access_token: value
+            })
+
+        });
+
+
+        apicall(url.host + url.addToCart, 'POST', formData, this.state.access_token, (response) => {
+            console.log(response.data)
+            if (!response.data) return;
+
+            if (response.status == 200) {
+                this.setState({
+
+                })
+            }
+            else {
+
+                if (response.hasOwnProperty('user_msg')) {
+
+                    alert(response.user_msg);
+                }
+                else {
+                    alert(response.message);
+                }
+            }
+
+
+        });
+
+
+
+    }
+
     componentDidMount() {
         this.setState({ loading: true, })
         apicall(url.host + url.productdetail + "?product_id=" + this.state.pid, 'GET', null, null, (response) => {
             console.log(response.data)
-            this.setState({
-                array: response.data,
-                loading: false,
-            })
+            if (response.status == 200) {
+                this.setState({
+                    array: response.data,
+                    loading: false,
+                })
+            }
+            else {
+
+                if (response.hasOwnProperty('user_msg')) {
+
+                    alert(response.user_msg);
+                }
+                else {
+                    alert(response.message);
+                }
+            }
 
         });
     }
     Star = (rating) => {
 
-        this.setState({ rate: rating });
+        this.setState({
+            rate: rating
+        });
 
     }
     Image = (data) => {
@@ -74,6 +159,9 @@ export default class Productdetail extends Component {
             alert('Enter quantity in numbers only..');
             return false;
         }
+        else {
+            this.FetchAddCart();
+        }
     }
 
     render() {
@@ -93,26 +181,26 @@ export default class Productdetail extends Component {
                             backdropOpacity={0.5}
                         >
                             <View style={styles.content}>
-                                {/* <ScrollView> */}
-                                <View style={styles.modalView1}>
-                                    <Text style={styles.textpop}>{this.state.array.name}</Text>
+                                <ScrollView>
+                                    <View style={styles.modalView1}>
+                                        <Text style={styles.textpop}>{this.state.array.name}</Text>
 
-                                    {this.state.array.product_images != undefined ? <Image style={styles.mainimg} source={{ uri: this.state.array.product_images[this.state.img].image }} /> : null}
-                                </View>
-                                <View style={styles.modalView1}>
-                                    <Text style={styles.textpop}> Enter Quantity</Text>
-                                    <View>
-                                        <TextInput onChangeText={(quantity) => this.setState({ quantity })}
-                                            maxLength={8}
-                                            style={{ height: 50, width: 110, borderColor: '#282727', borderWidth: 2, fontSize: 20, textAlign: 'center' }}></TextInput>
+                                        {this.state.array.product_images != undefined ? <Image style={styles.mainimg} source={{ uri: this.state.array.product_images[this.state.img].image }} /> : null}
                                     </View>
-                                    <TouchableOpacity style={styles.btntouchopacitypop}
-                                        onPress={() => this.validate()}
-                                    >
-                                        <Text style={styles.btntxt1}>SUBMIT</Text>
-                                    </TouchableOpacity>
-                                </View>
-                                {/* </ScrollView> */}
+                                    <View style={styles.modalView1}>
+                                        <Text style={styles.textpop}> Enter Quantity</Text>
+                                        <View>
+                                            <TextInput onChangeText={(quantity) => this.setState({ quantity })}
+                                                maxLength={8}
+                                                style={{ height: 50, width: 110, borderColor: '#282727', borderWidth: 2, fontSize: 20, textAlign: 'center' }}></TextInput>
+                                        </View>
+                                        <TouchableOpacity style={styles.btntouchopacitypop}
+                                            onPress={() => this.validate()}
+                                        >
+                                            <Text style={styles.btntxt1}>SUBMIT</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                </ScrollView>
 
                             </View>
                         </Modal>
@@ -141,7 +229,9 @@ export default class Productdetail extends Component {
 
                                     />
 
-                                    <TouchableOpacity style={styles.btntouchopacityrate}>
+                                    <TouchableOpacity style={styles.btntouchopacityrate}
+                                        onPress={() => this.FetchRating()}
+                                    >
                                         <Text style={styles.btntxt1}>RATE NOW</Text>
                                     </TouchableOpacity>
                                 </View>
@@ -175,7 +265,7 @@ export default class Productdetail extends Component {
                                 <View style={{ flex: 1, }}>
                                     <Text style={styles.textcost}> Rs. {this.state.array.cost}</Text>
                                 </View>
-                                <TouchableOpacity style={{ marginRight: 40 }}>
+                                <TouchableOpacity style={{ marginRight: 30 }}>
                                     <Icon name="share-alt" size={25} color="gray" />
                                 </TouchableOpacity>
                             </View>
