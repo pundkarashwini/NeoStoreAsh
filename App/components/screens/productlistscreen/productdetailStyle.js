@@ -53,6 +53,14 @@ export default styles = StyleSheet.create({
         // fontWeight: 'bold',
         fontSize: 25
     },
+    textpop:
+    {
+        color: '#2C2B2B',
+        // fontWeight: 'bold',
+        fontSize: 25,
+        padding: 20
+    },
+
     text1: {
         color: '#4F4F4F',
 
@@ -92,6 +100,23 @@ export default styles = StyleSheet.create({
 
 
     },
+    modalView1: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+
+
+    },
+    content: {
+
+        flex: 1,
+        backgroundColor: 'white',
+        borderRadius: 5,
+        marginTop: 60,
+        marginBottom: 70,
+
+
+    },
     img1: {
         flex: 1,
         height: 110,
@@ -110,13 +135,25 @@ export default styles = StyleSheet.create({
         height: 150,
         width: 220,
         marginTop: 5,
-        marginBottom: 5
-
+        marginBottom: 5,
+        borderColor: '#7F7F7F',
+        borderWidth: 1,
 
 
 
     },
 
+    mainimgpop: {
+
+        height: 150,
+        width: 220,
+        marginTop: 5,
+        // marginBottom: 5,
+        borderColor: '#7F7F7F',
+        borderWidth: 1,
+
+
+    },
 
 
     touchopacity: {
@@ -169,7 +206,34 @@ export default styles = StyleSheet.create({
         borderColor: 'red'
     },
 
+    btntouchopacitypop:
+    {
+        backgroundColor: 'red',
 
+        alignItems: 'center',
+        height: 50,
+        borderRadius: 5,
+        width: 170,
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: 'red',
+        marginTop: 20
+
+    },
+    btntouchopacityrate:
+    {
+        backgroundColor: 'red',
+
+        alignItems: 'center',
+        height: 50,
+        borderRadius: 5,
+        width: 200,
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: 'red',
+        marginTop: 20
+
+    },
 
 
 }

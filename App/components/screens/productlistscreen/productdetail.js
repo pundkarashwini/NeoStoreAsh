@@ -20,8 +20,10 @@ export default class Productdetail extends Component {
             array: [],
             category: this.props.navigation.state.params.category,
             img: 0,
-            isModalVisible: false
-
+            isModalVisible: false,
+            israteModalVisible: false,
+            rate: 0,
+            quantity: ''
 
         };
 
@@ -31,7 +33,9 @@ export default class Productdetail extends Component {
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
     }
-
+    toggleModalrate = () => {
+        this.setState({ israteModalVisible: !this.state.israteModalVisible });
+    }
     componentDidMount() {
         this.setState({ loading: true, })
         apicall(url.host + url.productdetail + "?product_id=" + this.state.pid, 'GET', null, null, (response) => {
@@ -43,9 +47,13 @@ export default class Productdetail extends Component {
 
         });
     }
+    Star = (rating) => {
 
+        this.setState({ rate: rating });
+
+    }
     Image = (data) => {
-        console.log(data)
+        // console.log(data)
         let arrayimg = [];
         for (let i = 0; i < data.length; i++) {
             arrayimg.push(<TouchableOpacity style={styles.touchopacity} key={'ashu' + i} onPress={() =>
@@ -60,6 +68,13 @@ export default class Productdetail extends Component {
         }
         return arrayimg;
     }
+    validate = () => {
+        let reg = /^[0-9]*$/;
+        if (this.state.quantity == '' || !reg.test(this.state.quantity)) {
+            alert('Enter quantity in numbers only..');
+            return false;
+        }
+    }
 
     render() {
         //console.log(this.state.array)
@@ -72,7 +87,67 @@ export default class Productdetail extends Component {
 
 
                     <View style={styles.view1}>
+                        <Modal isVisible={this.state.isModalVisible}
+                            onBackdropPress={() => this.toggleModal()}
+                            onBackButtonPress={() => this.toggleModal()}
+                            backdropOpacity={0.5}
+                        >
+                            <View style={styles.content}>
+                                {/* <ScrollView> */}
+                                <View style={styles.modalView1}>
+                                    <Text style={styles.textpop}>{this.state.array.name}</Text>
 
+                                    {this.state.array.product_images != undefined ? <Image style={styles.mainimg} source={{ uri: this.state.array.product_images[this.state.img].image }} /> : null}
+                                </View>
+                                <View style={styles.modalView1}>
+                                    <Text style={styles.textpop}> Enter Quantity</Text>
+                                    <View>
+                                        <TextInput onChangeText={(quantity) => this.setState({ quantity })}
+                                            maxLength={8}
+                                            style={{ height: 50, width: 110, borderColor: '#282727', borderWidth: 2, fontSize: 20, textAlign: 'center' }}></TextInput>
+                                    </View>
+                                    <TouchableOpacity style={styles.btntouchopacitypop}
+                                        onPress={() => this.validate()}
+                                    >
+                                        <Text style={styles.btntxt1}>SUBMIT</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                {/* </ScrollView> */}
+
+                            </View>
+                        </Modal>
+
+                        <Modal isVisible={this.state.israteModalVisible}
+                            onBackdropPress={() => this.toggleModalrate()}
+                            onBackButtonPress={() => this.toggleModalrate()}
+                            backdropOpacity={0.5}
+                        >
+                            <View style={styles.content}>
+                                <View style={styles.modalView1}>
+                                    <Text style={styles.textpop}>{this.state.array.name}</Text>
+
+                                    {this.state.array.product_images != undefined ? <Image style={styles.mainimg} source={{ uri: this.state.array.product_images[this.state.img].image }} /> : null}
+                                </View>
+                                <View style={styles.modalView1}>
+                                    <StarRating
+                                        name='rate'
+                                        rating={this.state.rate}
+                                        selectedStar={(rating) => this.Star(rating)}
+                                        maxStars={5}
+                                        fullStarColor={'#FFBA00'}
+                                        starSize={40}
+                                        padding={10}
+
+
+                                    />
+
+                                    <TouchableOpacity style={styles.btntouchopacityrate}>
+                                        <Text style={styles.btntxt1}>RATE NOW</Text>
+                                    </TouchableOpacity>
+                                </View>
+
+                            </View>
+                        </Modal>
                         <Text style={styles.text}>{this.state.array.name}</Text>
                         <Text style={styles.text2}>Category - {this.state.category}</Text>
 
@@ -87,8 +162,6 @@ export default class Productdetail extends Component {
                                     fullStarColor={'#FFBA00'}
                                     rating={this.state.array.rating}
                                     starSize={20}
-                                    padding={5}
-
 
                                 />
 
@@ -133,16 +206,11 @@ export default class Productdetail extends Component {
 
                                 <Text style={styles.btntxt1}>BUY NOW</Text>
                             </TouchableOpacity>
-                            {/* <Modal isVisible={this.state.isModalVisible}>
-                                <View style={{ flex: 1 }}>
-                                    <Text>Hello!</Text>
-                                    <TouchableOpacity onPress={this.toggleModal()}>
-                                        <Text>Hide me!</Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </Modal> */}
 
-                            <TouchableOpacity style={styles.btntouchopacity}>
+
+                            <TouchableOpacity style={styles.btntouchopacity}
+                                onPress={() => this.toggleModalrate()}
+                            >
                                 <Text style={styles.btntxt}>RATE</Text>
                             </TouchableOpacity>
                         </View>
